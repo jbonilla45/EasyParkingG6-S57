@@ -103,7 +103,7 @@ public class CltrFrameParqueadero {
     void borrarParqueadero(ActionEvent event) {
         ConexionBD b = new ConexionBD();
         String sql;
-        sql="DELETE FROM parqueadero WHERE idparqueadero="+Integer.parseInt(lblId.getText())+"";
+        sql = "DELETE FROM parqueadero WHERE idparqueadero=" + Integer.parseInt(lblId.getText()) + "";
         b.borrarBD(sql);
         updateData();
         System.out.println("Dato borrado exitosamente");
@@ -151,16 +151,16 @@ public class CltrFrameParqueadero {
         ConexionBD b = new ConexionBD();
         String sql;
 
-        sql="SELECT * FROM parqueadero WHERE idparqueadero="+Integer.parseInt(lblId.getText())+"";
-        try (ResultSet rs=b.consultarBD(sql)){
-            while (rs.next()){
+        sql = "SELECT * FROM parqueadero WHERE idparqueadero=" + Integer.parseInt(lblId.getText()) + "";
+        try (ResultSet rs = b.consultarBD(sql)) {
+            while (rs.next()) {
                 lblRazonSocial.setText(rs.getString("razonSocial"));
                 lblPlazasCarro.setText(rs.getString("numPlazasCarro"));
                 lblPlazasMoto.setText(rs.getString("numPlazasMoto"));
                 lblValorMinCarro.setText(rs.getString("valorMinutoCarro"));
                 lblValorMinMoto.setText(rs.getString("valorMinutoMoto"));
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -189,13 +189,11 @@ public class CltrFrameParqueadero {
         assert cmdLimpiar != null : "fx:id=\"cmdLimpiar\" was not injected: check your FXML file 'FrameParqueadero.fxml'.";
         assert cmdActualizar != null : "fx:id=\"cmdActualizar\" was not injected: check your FXML file 'FrameParqueadero.fxml'.";
         assert cmdBorrar != null : "fx:id=\"cmdBorrar\" was not injected: check your FXML file 'FrameParqueadero.fxml'.";
-
-        //buildData();
-
+        buildData();
     }
 
     //private TableView tableview;
-    public void buildData(){
+    public void buildData() {
         ConexionBD b;
         b = new ConexionBD();
         ObservableList<ObservableList> data = FXCollections.observableArrayList();
@@ -238,7 +236,8 @@ public class CltrFrameParqueadero {
             System.out.println("Error on Building Data");
         }
     }
-    public void updateData(){
+
+    public void updateData() {
         ConexionBD b;
         b = new ConexionBD();
         ObservableList<ObservableList> data = FXCollections.observableArrayList();
