@@ -92,7 +92,7 @@ public class CltrFrameParqueadero {
             ps.setDouble(6, Integer.parseInt(lblId.getText())); //idParqueadero
             ps.execute();
             System.out.println("Actualizacion exitosa!!");
-            buildData();
+            //buildData();
             b.cerrarConexion();
             cmdActualizar.defaultButtonProperty();
         } catch (SQLException e) {
@@ -183,7 +183,7 @@ public class CltrFrameParqueadero {
         assert cmdActualizar != null : "fx:id=\"cmdActualizar\" was not injected: check your FXML file 'FrameParqueadero.fxml'.";
         assert cmdBorrar != null : "fx:id=\"cmdBorrar\" was not injected: check your FXML file 'FrameParqueadero.fxml'.";
 
-        buildData();
+        //buildData();
 
     }
 
