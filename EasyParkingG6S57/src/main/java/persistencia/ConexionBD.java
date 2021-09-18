@@ -133,6 +133,7 @@ public class ConexionBD {
 
     public void cerrarConexion() {
         closeConnection(con);
+        System.out.println("conexión cerrada");
     }
 
     public boolean commitBD() {
