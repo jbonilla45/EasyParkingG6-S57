@@ -94,7 +94,7 @@ public class CltrFrameParqueadero {
             //buildData();
 =======
             updateData();
->>>>>>> jorgeB
+git>>>>>>> jorgeB
             b.cerrarConexion();
             cmdActualizar.defaultButtonProperty();
         } catch (SQLException e) {
