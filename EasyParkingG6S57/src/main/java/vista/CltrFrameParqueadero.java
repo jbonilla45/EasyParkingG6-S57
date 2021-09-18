@@ -90,11 +90,7 @@ public class CltrFrameParqueadero {
             ps.setDouble(6, Integer.parseInt(lblId.getText())); //idParqueadero
             ps.execute();
             System.out.println("Actualizacion exitosa!!");
-<<<<<<< HEAD
-            //buildData();
-=======
             updateData();
-git>>>>>>> jorgeB
             b.cerrarConexion();
             cmdActualizar.defaultButtonProperty();
         } catch (SQLException e) {
