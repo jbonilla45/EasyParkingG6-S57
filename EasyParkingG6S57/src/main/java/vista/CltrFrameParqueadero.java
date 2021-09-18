@@ -1,13 +1,5 @@
 package vista;
 
-import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
-
-import com.mysql.cj.x.protobuf.MysqlxCursor;
-import com.sun.glass.ui.MenuItem;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -24,6 +16,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import logica.Parqueadero;
 import persistencia.ConexionBD;
+
+import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 public class CltrFrameParqueadero {
 
@@ -92,7 +90,11 @@ public class CltrFrameParqueadero {
             ps.setDouble(6, Integer.parseInt(lblId.getText())); //idParqueadero
             ps.execute();
             System.out.println("Actualizacion exitosa!!");
+<<<<<<< HEAD
             //buildData();
+=======
+            updateData();
+>>>>>>> jorgeB
             b.cerrarConexion();
             cmdActualizar.defaultButtonProperty();
         } catch (SQLException e) {
@@ -103,7 +105,12 @@ public class CltrFrameParqueadero {
 
     @FXML
     void borrarParqueadero(ActionEvent event) {
-
+        ConexionBD b = new ConexionBD();
+        String sql;
+        sql="DELETE FROM parqueadero WHERE idparqueadero="+Integer.parseInt(lblId.getText())+"";
+        b.borrarBD(sql);
+        updateData();
+        System.out.println("Dato borrado exitosamente");
     }
 
     @FXML
@@ -124,15 +131,14 @@ public class CltrFrameParqueadero {
             ps = b.con.prepareStatement("INSERT INTO parqueadero (razonSocial, numPlazasCarro, " +
                     "numPlazasMoto, valorMinutoCarro, valorMinutoMoto) VALUES (?, ?, ?, ?, ?)");
             ps.setString(1, parq.getRazonSocial());     //razonSocial
-            ps.setInt(2, parq.getNumPlazasCarro());  //numPlazasCarro
-            ps.setInt(3, parq.getNumPlazasMoto());   //numPlazasMoto
+            ps.setInt(2, parq.getNumPlazasCarro());     //numPlazasCarro
+            ps.setInt(3, parq.getNumPlazasMoto());      //numPlazasMoto
             ps.setDouble(4, parq.getValorMinutoCarro());//valorMinutoCarro
             ps.setDouble(5, parq.getValorMinutoMoto()); //valorMinutoMoto
             ps.execute();
-            buildData();
+            updateData();
             System.out.println("ingreso exitoso!!");
             b.cerrarConexion();
-            cmdCrear.defaultButtonProperty();
         } catch (SQLException e) {
             System.out.println("no se ingreso :( ");
             e.printStackTrace();
@@ -146,16 +152,21 @@ public class CltrFrameParqueadero {
 
     @FXML
     void leerParqueadero(ActionEvent event) {
-        ConexionBD b;
-        b = new ConexionBD();
-        String stm = "SELECT razonSocial FROM parqueadero WHERE (idparqueadero="+lblId.getText()+")";
-        ResultSet tem= (b.consultarBD(stm));
-        try {
-            lblRazonSocial.setText(tem.getString("razonSocial"));
-        } catch (SQLException e) {
+        ConexionBD b = new ConexionBD();
+        String sql;
+
+        sql="SELECT * FROM parqueadero WHERE idparqueadero="+Integer.parseInt(lblId.getText())+"";
+        try (ResultSet rs=b.consultarBD(sql)){
+            while (rs.next()){
+                lblRazonSocial.setText(rs.getString("razonSocial"));
+                lblPlazasCarro.setText(rs.getString("numPlazasCarro"));
+                lblPlazasMoto.setText(rs.getString("numPlazasMoto"));
+                lblValorMinCarro.setText(rs.getString("valorMinutoCarro"));
+                lblValorMinMoto.setText(rs.getString("valorMinutoMoto"));
+            }
+        }catch (SQLException e){
             e.printStackTrace();
         }
-        //b.cerrarConexion();
     }
 
     @FXML
@@ -231,4 +242,35 @@ public class CltrFrameParqueadero {
             System.out.println("Error on Building Data");
         }
     }
+    public void updateData(){
+        ConexionBD b;
+        b = new ConexionBD();
+        ObservableList<ObservableList> data = FXCollections.observableArrayList();
+        String SQL = "SELECT * from parqueadero";
+        //ResultSet
+        try {
+            ResultSet rs = b.con.createStatement().executeQuery(SQL);
+
+            while (rs.next()) {
+                //Iterate Row
+                ObservableList<String> row = FXCollections.observableArrayList();
+                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                    //Iterate Column
+                    row.add(rs.getString(i));
+                }
+                System.out.println("Row [1] added " + row);
+                data.add(row);
+            }
+
+            //FINALLY ADDED TO TableView
+            tblParqueaderos.setItems(data);
+            b.cerrarConexion();
+            tblParqueaderos.refresh();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error on Building Data");
+        }
+    }
+
 }
