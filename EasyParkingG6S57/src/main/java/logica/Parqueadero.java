@@ -10,6 +10,10 @@ public class Parqueadero {
 
     //constructor
 
+
+    public Parqueadero() {
+    }
+
     public Parqueadero(String razonSocial, int numPlazasCarro, int numPlazasMoto, double valorMinutoCarro, double valorMinutoMoto) {
         this.razonSocial = razonSocial;
         this.numPlazasCarro = numPlazasCarro;
