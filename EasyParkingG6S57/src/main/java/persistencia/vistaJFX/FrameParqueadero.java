@@ -1,4 +1,4 @@
-package persistencia.vista;
+package persistencia.vistaJFX;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

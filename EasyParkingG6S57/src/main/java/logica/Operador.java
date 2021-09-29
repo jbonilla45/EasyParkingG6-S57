@@ -8,6 +8,10 @@ public class Operador {
 
     //constructor
 
+
+    public Operador() {
+    }
+
     public Operador(String nombre, String apellido, String cargo) {
         this.nombre = nombre;
         this.apellido = apellido;

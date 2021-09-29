@@ -1,3 +1,5 @@
+/*configuracion de la conexion a la base de datos de acuerdo al del material del curso
+* las demas aplicaciones del la app que requieren conexion usan esta instacia*/
 package persistencia;
 
 import java.sql.*;
@@ -114,7 +116,7 @@ public class ConexionBD {
         try {
             stmt = con.createStatement();
             stmt.executeUpdate(sentencia);
-        } catch (SQLException | RuntimeException sqlex) {
+       } catch (SQLException | RuntimeException sqlex) {
             System.out.println("ERROR RUTINA: " + sqlex);
             return false;
         }
@@ -155,6 +157,4 @@ public class ConexionBD {
             return false;
         }
     }
-
-    
 }

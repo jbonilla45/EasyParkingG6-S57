@@ -1,4 +1,4 @@
-package persistencia.vista;
+package persistencia.vistaJFX;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;

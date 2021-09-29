@@ -1,40 +1,26 @@
 <%@ page import="logica.Parqueadero" %>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
-<head><title>Parqueadero JSP</title></head>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Inicio</title>
+</head>
 <body>
-<h1>PARQUEADERO</h1>
-<% Parqueadero p = new Parqueadero();
-    String mensaje = "Bienvenido!";
-    int id =0;
 
-    if (request.getAttribute("id")!=null){
-        id = (int) request.getAttribute("id");
-    }
 
-    if (request.getAttribute("mensaje") != null) {
-        mensaje = (String) request.getAttribute("mensaje");
-    }
+<div class="container">
 
-    if (request.getAttribute("objParqueadero") != null) {
-        p = (Parqueadero) request.getAttribute("objParqueadero");
-    }
-%>
+    <div>
+        <h1>Easy Parking grupo 6 S57</h1>
+    </div>
 
-<form name="parqueadero" action="indexServlet" method="POST">
-    RAZON SOCIAL:      <input type="text" name="razonSocial" value="<%=p.getRazonSocial()%>" /><br>
-    PLAZAS CARRO:      <input type="text" name="numPlazasCarro" value="<%=p.getNumPlazasCarro()%>" /><br>
-    PLAZAS MOTO:       <input type="text" name="numPlazasMoto" value="<%=p.getNumPlazasMoto()%>" /><br>
-    VALOR MINUTO CARRO:<input type="text" name="valorMinutoCarro" value="<%=p.getValorMinutoCarro()%>" /><br>
-    VALOR MINUTO MOTO: <input type="text" name="valorMinutoMoto" value="<%=p.getValorMinutoMoto()%>" /><br>
-    ID: <input type="text" name="id" value="<%=id%>" /><br>
-    <input type="submit" value="CREAR" name="action" />
-    <input type="submit" value="LEER" name="action" />
-    <input type="submit" value="MODIFICAR" name="action" />
-    <input type="submit" value="ELIMINAR" name="action" />
-    <h4><%=mensaje%></h4>
-</form>
+    <div class="input-group mb-3">
+        <a href="paginaOperador.jsp" class="btn btn-primary" role="button" data-bs-toggle="button">Operador</a>
+        <a href="paginaParqueadero.jsp" class="btn btn-primary" role="button" data-bs-toggle="button">Parqueadero</a>
+        <a href="paginaAplicacion.jsp" class="btn btn-primary" role="button" data-bs-toggle="button">Aplicacion</a>
+    </div>
+</div>
 </body>
-    

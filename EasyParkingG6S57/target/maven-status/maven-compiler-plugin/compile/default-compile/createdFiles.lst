@@ -1,8 +1,11 @@
+persistencia\vistaJFX\FrameParqueadero.class
+persistencia\vistaJFX\CltrFrameParqueadero$1.class
+com\mycompany\easyparkingg6s57\OperadorCltr.class
 logica\Operador.class
-persistencia\Main.class
+com\mycompany\easyparkingg6s57\OperadorServlet.class
+persistencia\vistaJFX\CltrFrameParqueadero.class
+com\mycompany\easyparkingg6s57\indexServlet.class
+com\mycompany\easyparkingg6s57\ParqueaderoCltr.class
 logica\Parqueadero.class
-vista\CltrFrameParqueadero$1.class
 persistencia\ConexionBD.class
-vista\CltrFrameParqueadero.class
-vista\FrameParqueadero.class
 logica\Vehiculo.class
