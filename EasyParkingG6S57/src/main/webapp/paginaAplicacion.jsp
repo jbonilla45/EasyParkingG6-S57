@@ -10,14 +10,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Talero Parqueadero</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 <body>
 <%
-    Vehiculo v = new Vehiculo();
+    Vehiculo v = new Vehiculo("","","");
+    v.setTotalPagar(0d);
     //String accion = request.getParameter("action");
 
     String mensaje = "Bienvenido";
@@ -51,7 +53,7 @@
                         <h2>PLACA</h2>
                     </div>
                     <div class="col-12 ">
-                        <input class="form-control" type="text" name="placa" value="<%=v.getPlaca()%>"/>
+                        <input id="placa" class="form-control" type="text" name="placa" value="<%=v.getPlaca()%>"/>
                     </div>
                 </div>
 

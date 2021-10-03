@@ -123,14 +123,14 @@ public class ConexionBD {
         return true;
     }
 
-    public boolean setAutoCommitBD(boolean parametro) {
+    public boolean setAutoCommitBD(boolean commit){
         try {
-            con.setAutoCommit(parametro);
-        } catch (SQLException sqlex) {
-            System.out.println("Error al configurar el autoCommit " + sqlex.getMessage());
+            con.setAutoCommit(commit);
+            return true;
+        } catch (SQLException | RuntimeException ex) {
+            System.out.println("Error en set Autocommit");
             return false;
         }
-        return true;
     }
 
     public void cerrarConexion() {
@@ -138,12 +138,12 @@ public class ConexionBD {
         System.out.println("conexión cerrada");
     }
 
-    public boolean commitBD() {
+    public boolean commitBD(){
         try {
             con.commit();
             return true;
-        } catch (SQLException sqlex) {
-            System.out.println("Error al hacer commit " + sqlex.getMessage());
+        } catch (SQLException | RuntimeException ex) {
+            System.out.println("Error en commit a la BD");
             return false;
         }
     }

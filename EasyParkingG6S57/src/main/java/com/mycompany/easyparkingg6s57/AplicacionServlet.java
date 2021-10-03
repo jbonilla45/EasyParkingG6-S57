@@ -11,7 +11,7 @@ import java.io.IOException;
 public class AplicacionServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String placa = request.getParameter("placa");
+        String placa = request.getParameter("placa").toUpperCase();
         String tipoVehiculo = request.getParameter("tipoVehiculo");
         String medioPago = request.getParameter("medioPago");
 

@@ -25,5 +25,7 @@ select{
     margin-bottom: 3px;
     padding: 3px;
     width: 72%;
-
+}
+#placa{
+    text-transform: uppercase;
 }
