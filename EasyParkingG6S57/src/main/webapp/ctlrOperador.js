@@ -1,7 +1,7 @@
 var app = angular.module('EasyParkingG6S57', []);
 
-
 app.controller('ctlrOperador', function ($scope, $http) {
+
     var alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 
     function alertBootstrap(message, type) {
@@ -14,7 +14,7 @@ app.controller('ctlrOperador', function ($scope, $http) {
     $scope.guardarOperador = function () {
         let regexNumbers = /^[0-9]*$/;
 
-        if ($scope.nombre === undefined || $scope.apellido === undefined) {
+        if ($scope.nombre === undefined || $scope.apellido === undefined || $scope.cargo === undefined) {
             alert('Todos los campos son obligatorios');
 
         } else {
@@ -34,7 +34,7 @@ app.controller('ctlrOperador', function ($scope, $http) {
                 console.log(respuesta);
                 if (respuesta.data.guardarOperador) {
                     alert('Guardado Exitoso');
-                    //$scope.listarOperador();
+                    $scope.listarOperador();
                 } else {
                     alert('Error al guardar en la BD');
                 }
@@ -56,15 +56,15 @@ app.controller('ctlrOperador', function ($scope, $http) {
             url: 'Peticiones.jsp',
             params: params
         }).then(function (respuesta) {
-            $scope.contactos = respuesta.data.Operador;
-            console.log($scope.contactos);
+            $scope.operadores = respuesta.data.Operador;
+            console.log($scope.operadores);
         });
     };
 
     $scope.eliminarOperador = function () {
         let params = {
             proceso: 'eliminarOperador',
-            id: $scope.idParaEliminar
+            id: $scope.id
         };
         $http({
             method: 'GET',
@@ -77,21 +77,17 @@ app.controller('ctlrOperador', function ($scope, $http) {
             } else {
                 alert('Error al eliminar operador');
             }
-
         });
     };
 
     $scope.actualizarOperador = function () {
         let params = {
             proceso: 'actualizarOperador',
-            identificacion: $scope.identificacion,
+            id: $scope.id,
             nombre: $scope.nombre,
             apellido: $scope.apellido,
-            genero: $scope.genero,
-            tipoIdentificacion: $scope.tipoIdentificacion,
-            telefono: $scope.telefono,
-            direccion: $scope.direccion,
-            correo: $scope.correo
+            cargo:$scope.cargo,
+
         };
 
         $http({
@@ -101,7 +97,7 @@ app.controller('ctlrOperador', function ($scope, $http) {
         }).then(function (respuesta) {
             if (respuesta.data.actualizarOperador) {
                 alert('Actualización exitosa');
-                $scope.listarContactos();
+                $scope.listarOperador();
             } else {
                 alert('No se pudo actualizar');
             }
@@ -116,14 +112,14 @@ app.controller('ctlrOperador', function ($scope, $http) {
     $scope.mostrarFormActualizar = function (operador) {
         $scope.mostrarListaOperador = false;
         $scope.actualizar = true;
-        $scope.id = contacto.id;
-        $scope.nombre = contacto.nombre;
-        $scope.apellido = contacto.apellido;
-        $scope.cargo = contacto.cargo;
+        $scope.id = operador.id;
+        $scope.nombre = operador.nombre;
+        $scope.apellido = operador.apellido;
+        $scope.cargo = operador.cargo;
     };
 
-    $scope.abrirModal = function (identificacion) {
-        $scope.idParaEliminar = identificacion;
+    $scope.abrirModal = function (id) {
+        $scope.id = id;
         var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
             keyboard: false
         });

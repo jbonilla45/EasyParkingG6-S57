@@ -10,8 +10,9 @@
 <%@ page contentType="text/html;charset=UTF-8"  %>
 
 <%
-    String respuesta = "";
+    String respuesta = "{";
     String proceso = request.getParameter("proceso"); //request HTTP
+    int id = 0;
 
     Operador o = new Operador();
 
@@ -30,13 +31,15 @@
             }
             break;
 
-        /*case "actualizarOperador":
-            System.out.println("Guardar Operador");
+        case "actualizarOperador":
+
+            System.out.println("Actualizar Operador");
+            id= Integer.parseInt(request.getParameter("id"));
             o.setNombre(request.getParameter("nombre"));
             o.setApellido(request.getParameter("apellido"));
             o.setCargo(request.getParameter("cargo"));
 
-            if (o.actualizarContacto(Integer.parseInt(request.getParameter("id")))){
+            if (o.actualizarContacto(id)){
                 respuesta += "\"" + proceso + "\": true";
             }else{
                 respuesta += "\"" + proceso + "\": false";
@@ -45,7 +48,7 @@
 
         case "eliminarOperador":
             System.out.println("Eliminar Operador");
-            int id = Integer.parseInt(request.getParameter("id"));
+            id = Integer.parseInt(request.getParameter("id"));
             if (o.borrarOperador(id)){
                 respuesta += "\"" + proceso + "\": true";
             }else {
@@ -55,13 +58,13 @@
 
         case "listarOperador":
             System.out.println("Listar Operadores");
-            List<Operador> listaContactos = o.listarOperador();
-            if(listaContactos.isEmpty()){
-                respuesta += "\"" + proceso + "\": true,\"Contactos\":[]"; //genera una lista vacía en el json
+            List<Operador> listarOperador = o.listarOperador();
+            if(listarOperador.isEmpty()){
+                respuesta += "\"" + proceso + "\": true,\"Operador\":[]"; //genera una lista vacía en el json
             } else{
-                respuesta += "\"" + proceso + "\": true,\"Contactos\":" + new Gson().toJson(listaContactos); //guarda la lista en el json
+                respuesta += "\"" + proceso + "\": true,\"Operador\":" + new Gson().toJson(listarOperador); //guarda la lista en el json
             }
-            break;*/
+            break;
 
         default:
             respuesta += "\"ok\": false,";

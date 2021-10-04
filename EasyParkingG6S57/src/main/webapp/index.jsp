@@ -18,7 +18,7 @@
     </div>
 
     <div class="input-group mb-3">
-        <a href="paginaOperador.jsp" class="btn btn-primary" role="button" data-bs-toggle="button">Operador</a>
+        <a href="Operador.jsp" class="btn btn-primary" role="button" data-bs-toggle="button">Operador</a>
         <a href="paginaParqueadero.jsp" class="btn btn-primary" role="button" data-bs-toggle="button">Parqueadero</a>
         <a href="paginaAplicacion.jsp" class="btn btn-primary" role="button" data-bs-toggle="button">Aplicacion</a>
     </div>

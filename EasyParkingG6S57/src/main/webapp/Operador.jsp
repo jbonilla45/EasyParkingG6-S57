@@ -11,7 +11,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>JSP Page</title>
+  <title>Operador</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"/>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
   <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
@@ -32,20 +32,22 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+            <a class="nav-link active" aria-current="page" href="index.jsp">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" ng-click="mostrarFormulario()">Guardar contacto</a>
+            <a class="nav-link" href="#" ng-click="mostrarFormulario()">Crear Operador</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" ng-click="listarContactos()">Listar contactos</a>
+            <a class="nav-link" href="#" ng-click="listarOperador()">Listar Operadores</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
   <div id="liveAlertPlaceholder"></div>
-  <div class="container-fluid" ng-show="!mostrarListaContactos">
+
+  <div class="container-fluid" ng-show="!mostrarListaOperador">
     <div class="row d-flex justify-content-center">
       <div class="col-6" style="text-align: center" ng-show="!actualizar"><h1>Crear Operador</h1></div>
       <div class="col-6" style="text-align: center" ng-show="actualizar"><h1>Actualizar Operador</h1></div>
@@ -93,8 +95,8 @@
         <td>{{operador.nombre}}</td>
         <td>{{operador.apellido}}</td>
         <td>{{operador.cargo}}</td>
-        <td style="cursor: pointer" ng-click="mostrarFormActualizar(contacto)">actualizar</td>
-        <td style="cursor: pointer" ng-click="abrirModal(contacto.identificacion)">borrar</td>
+        <td style="cursor: pointer" class="nav-link" ng-click="mostrarFormActualizar(operador)">actualizar</td>
+        <td style="cursor: pointer" ng-click="abrirModal(operador.id)">borrar</td>
       </tr>
       </tbody>
     </table>
@@ -112,7 +114,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" ng-click="eliminarContacto()">Eliminar</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" ng-click="eliminarOperador()">Eliminar</button>
           </div>
         </div>
       </div>

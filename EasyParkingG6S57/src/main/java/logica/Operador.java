@@ -12,6 +12,7 @@ public class Operador {
     private String nombre;
     private String apellido;
     private String cargo;
+    private int id;
 
     //constructor
 
@@ -25,6 +26,12 @@ public class Operador {
         this.cargo = cargo;
     }
 
+    public Operador(String nombre, String apellido, String cargo, int id) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cargo = cargo;
+        this.id = id;
+    }
     //get & setter
 
     public String getNombre() {
@@ -51,23 +58,39 @@ public class Operador {
         this.cargo = cargo;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public boolean guardarOperador() {
         ConexionBD conBD = new ConexionBD();
         String sql = "INSERT INTO operador(nombre, apellido, cargo) VALUES ('" + this.nombre + "','" + this.apellido + "','" + this.cargo + "')";
 
+        if (conBD.setAutoCommitBD(false)) {
             if (conBD.insertarBD(sql)) {
+                conBD.commitBD();
                 conBD.cerrarConexion();
                 return true;
-            } else { //si no logro insertar en la BD
+            } else {
+                conBD.rollbackBD();
                 conBD.cerrarConexion();
                 return false;
             }
+        } else {
+            conBD.cerrarConexion();
+            return false;
+        }
 
     }
 
     public boolean borrarOperador(int id) {
         ConexionBD conBD = new ConexionBD();
         String sql = "DELETE from operador WHERE idoperador =" + id + "";
+
         if (conBD.setAutoCommitBD(false)) {
             if (conBD.borrarBD(sql)) {
                 conBD.commitBD();
@@ -107,13 +130,14 @@ public class Operador {
 
     public List<Operador> listarOperador() throws SQLException {
         ConexionBD conexion = new ConexionBD();
-        String sentencia = "SELECT * FROM operador ORDER BY idoperador ASC;";
+        String sql = "SELECT * FROM operador;";
         List<Operador> listaOperador = new ArrayList<>();
-        ResultSet datos = conexion.consultarBD(sentencia);
+        ResultSet datos = conexion.consultarBD(sql);
 
         Operador o;
         while (datos.next()) {
             o = new Operador();
+            o.setId(Integer.parseInt(datos.getString("idoperador")));
             o.setNombre(datos.getString("nombre"));
             o.setApellido(datos.getString("apellido"));
             o.setCargo(datos.getString("cargo"));
@@ -125,9 +149,9 @@ public class Operador {
     }
 
     public Operador obtenerOperador(int id) throws SQLException {
-        ConexionBD canBD = new ConexionBD();
+        ConexionBD conBD = new ConexionBD();
         String sql = "SELECT * FROM operador WHERE idoperador = '" + id + "';";
-        ResultSet datos = canBD.consultarBD(sql);
+        ResultSet datos = conBD.consultarBD(sql);
         if (datos.next()) {
             Operador o = new Operador();
             o.setNombre(datos.getString("nombre"));
@@ -136,7 +160,7 @@ public class Operador {
 
             return o;
         } else {
-            canBD.cerrarConexion();
+            conBD.cerrarConexion();
             return null; //no había contacto
         }
     }
