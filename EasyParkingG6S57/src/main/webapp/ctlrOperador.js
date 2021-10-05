@@ -1,6 +1,6 @@
 var app = angular.module('EasyParkingG6S57', []);
 
-app.controller('ctlrOperador', function ($scope, $http) {
+app.controller('ctlr', function ($scope, $http) {
 
     var alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 
@@ -12,8 +12,6 @@ app.controller('ctlrOperador', function ($scope, $http) {
     }
 
     $scope.guardarOperador = function () {
-        let regexNumbers = /^[0-9]*$/;
-
         if ($scope.nombre === undefined || $scope.apellido === undefined || $scope.cargo === undefined) {
             alert('Todos los campos son obligatorios');
 
@@ -33,13 +31,13 @@ app.controller('ctlrOperador', function ($scope, $http) {
             }).then(function (respuesta) {
                 console.log(respuesta);
                 if (respuesta.data.guardarOperador) {
-                    alert('Guardado Exitoso');
                     $scope.listarOperador();
+                    alertBootstrap("Saved!", "success")
                 } else {
-                    alert('Error al guardar en la BD');
+                    alert('Error not saved');
                 }
             }).catch(function (error) {
-                alert('Servicio no disponible, intente más tarde!');
+                alert('Service not available!');
                 console.log(error);
             });
         }
@@ -72,10 +70,10 @@ app.controller('ctlrOperador', function ($scope, $http) {
             params: params
         }).then(function (respuesta) {
             if (respuesta.data.eliminarOperador) {
-                alertBootstrap('Operador eliminado exitosamente!', 'success');
+                alertBootstrap('Deleted!', 'success');
                 $scope.listarOperador();
             } else {
-                alert('Error al eliminar operador');
+                alert('Error delete');
             }
         });
     };
@@ -86,7 +84,7 @@ app.controller('ctlrOperador', function ($scope, $http) {
             id: $scope.id,
             nombre: $scope.nombre,
             apellido: $scope.apellido,
-            cargo:$scope.cargo,
+            cargo: $scope.cargo,
 
         };
 
@@ -96,10 +94,10 @@ app.controller('ctlrOperador', function ($scope, $http) {
             params: params
         }).then(function (respuesta) {
             if (respuesta.data.actualizarOperador) {
-                alert('Actualización exitosa');
                 $scope.listarOperador();
+                alertBootstrap("Update!", "success")
             } else {
-                alert('No se pudo actualizar');
+                alert('No update');
             }
             console.log(respuesta);
         });
