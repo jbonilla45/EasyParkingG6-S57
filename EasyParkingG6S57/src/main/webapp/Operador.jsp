@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
             crossorigin="anonymous"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
     <style>
         #liveAlertPlaceholder {
             width: 90%;
@@ -25,7 +25,7 @@
         }
 
         #listaOperadores {
-            width: 80%;
+            width: 60%;
         }
     </style>
 </head>
@@ -92,8 +92,8 @@
         <div class="row d-flex justify-content-center">
             <div class="col-6" style="text-align: center"><h1>Lista de Operadores</h1></div>
         </div>
-        <table class="table table-hover">
-            <thead>
+        <table class="table table-hover table-bordered text-center">
+            <thead class="table-dark">
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nombre</th>
@@ -108,7 +108,7 @@
                 <td>{{operador.nombre}}</td>
                 <td>{{operador.apellido}}</td>
                 <td>{{operador.cargo}}</td>
-                <td>
+                <td class="">
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                         <button type="button" class="btn btn-outline-info btn-sm" style="cursor: pointer"
                                 class="nav-link" ng-click="mostrarFormActualizar(operador)">Actualizar

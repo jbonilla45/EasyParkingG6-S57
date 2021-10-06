@@ -32,10 +32,10 @@ public class ConexionBD {
             password = "B3b3s1t@";
         } else {
             host = "mysql1007.mochahost.com:3306";
-            db = "eparkingg6-s57";
+            db = "c3s57grupo6";
             url = "jdbc:mysql://" + host + "/" + db; //URL DB
-            username = "root"; //usuario base de datos global
-            password = "B3b3s1t@";
+            username = "c3s57grupo6"; //usuario base de datos global
+            password = "sXYcj7c1";
         }
         try {
 //Asignacin del Driver

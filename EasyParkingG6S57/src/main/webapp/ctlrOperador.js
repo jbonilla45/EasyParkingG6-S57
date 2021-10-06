@@ -26,7 +26,7 @@ app.controller('ctlr', function ($scope, $http) {
 
             $http({
                 method: 'POST',
-                url: 'Peticiones.jsp',
+                url: 'PeticionesOperador.jsp',
                 params: operador
             }).then(function (respuesta) {
                 console.log(respuesta);
@@ -51,7 +51,7 @@ app.controller('ctlr', function ($scope, $http) {
 
         $http({
             method: 'GET',
-            url: 'Peticiones.jsp',
+            url: 'PeticionesOperador.jsp',
             params: params
         }).then(function (respuesta) {
             $scope.operadores = respuesta.data.Operador;
@@ -66,7 +66,7 @@ app.controller('ctlr', function ($scope, $http) {
         };
         $http({
             method: 'GET',
-            url: 'Peticiones.jsp',
+            url: 'PeticionesOperador.jsp',
             params: params
         }).then(function (respuesta) {
             if (respuesta.data.eliminarOperador) {
@@ -90,7 +90,7 @@ app.controller('ctlr', function ($scope, $http) {
 
         $http({
             method: 'GET',
-            url: 'Peticiones.jsp',
+            url: 'PeticionesOperador.jsp',
             params: params
         }).then(function (respuesta) {
             if (respuesta.data.actualizarOperador) {
