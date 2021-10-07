@@ -22,20 +22,20 @@ public class ConexionBD {
 
     //Constructor sin parmetros
     public ConexionBD() {
-        local = true;//pude establecer este valor en falso para conectarse al servidor remoto
+        local = false;//pude establecer este valor en falso para conectarse al servidor remoto
         DB_driver = "com.mysql.jdbc.Driver";
         if (local) {
+            host = "localhost:3306";
+            db = "c3s57grupo6";
+            url = "jdbc:mysql://" + host + "/" + db; //URL DB
+            username = "c3s57grupo6"; //usuario base de datos global
+            password = "sXYcj7c1";
+        } else {
             host = "localhost:3306";
             db = "eparkingg6-s57";
             url = "jdbc:mysql://" + host + "/" + db; //URL DB
             username = "root"; //usuario base de datos global
             password = "B3b3s1t@";
-        } else {
-            host = "mysql1007.mochahost.com:3306";
-            db = "c3s57grupo6";
-            url = "jdbc:mysql://" + host + "/" + db; //URL DB
-            username = "c3s57grupo6"; //usuario base de datos global
-            password = "sXYcj7c1";
         }
         try {
 //Asignacin del Driver
